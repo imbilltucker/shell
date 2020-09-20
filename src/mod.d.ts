@@ -17,6 +17,7 @@ declare interface GLib {
     PRIORITY_LOW: number;
 
     find_program_in_path(prog: string): string | null;
+    get_current_dir(): string;
 
     idle_add(priority: any, callback: () => boolean): number;
 
@@ -24,6 +25,7 @@ declare interface GLib {
     signal_handler_unblock(object: GObject.Object, signal: SignalID): void;
 
     spawn_command_line_sync(cmd: string): ProcessResult;
+    spawn_command_line_async(cmd: string): ProcessResult;
 
     timeout_add(priority: any, ms: number, callback: () => Boolean): number;
 }
@@ -196,7 +198,7 @@ declare namespace St {
     }
 
     interface Bin extends St.Widget {
-
+        set_style(inlinecss: string): boolean;
     }
 
     interface Entry extends Widget {
